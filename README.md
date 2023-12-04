@@ -3,7 +3,7 @@
 SessionJs is a simple authentication library designed for Node.js, offering easy-to-use session management functionalities. It provides a flexible and secure way to handle user sessions in your Node.js applications.
 
 ## Version
-Current version: 1.0.0
+Current version: 1.2.1
 
 ## Author
 Elias Dieter (EliJs)
