@@ -1,107 +1,62 @@
-
 # SessionJs
-SessionJs is a simple authentication library designed for Node.js, offering easy-to-use session management functionalities. It provides a flexible and secure way to handle user sessions in your Node.js applications.
+SessionJs is a simple session library for Node.js that facilitates session management in your applications.
 
-## Version
-Current version: 1.2.1
+## Features:
+- #### Session Management: Effortlessly handle user sessions in your Node.js projects.
+- #### Configurable Settings: Tailor session expiration time and session ID length to meet the requirements of your application.
+- #### Intuitive API: User-friendly API for initiating, terminating, and validating sessions.
 
-## Author
-Elias Dieter (EliJs)
-## Usage
-### Installation
+## Installation
+Install SessionJs using npm:
+
 ```bash
-npm install session-js
+npm install sessionjs
 ```
-### Initialization
+## Usage
 ```javascript
-import SessionJs from 'session-js';
-// Initialize SessionJs with optional parameters
-const sessionManager = new SessionJs(expireTime, sessionIdLength);
-```
-### Class Properties
-sessions (Array): An array to store all active sessions.
+// Import the SessionJs module
+import SessionJs from 'sessionjs';
 
-expireTime (number|string): The time (in minutes) after which a session will expire, or "never" for no expiration. Default: 30 minutes.
+// Create a new instance of SessionJs
+const session = new SessionJs();
 
-sessionIdLength (number): The length of the session ID string. Default: 64.
+// Start a new session for a user
+let sessionId = session.start({username: 'testuser'});
 
-### Methods
-Returns an array of all active sessions.
-```javascript
-const allSessions = sessionManager.getSessions();
-```
+// Check if a session is valid
+let user = session.validate(sessionId);
 
-Destroys all active sessions.
-```javascript
-sessionManager.destroyAllSessions();
+// Renew the expiration time of a session
+session.renew(sessionId);
+
+// End a session
+session.end(sessionId);
 ```
 
-Sets the session expiration time.
-```javascript
-sessionManager.setExpireTime(expireTime);
-```
+## API
+### Constructor
+The constructor takes two optional parameters: sessionExpiration and sessionIdLength. sessionExpiration is the time (in minutes) after which a session will expire, or "never" for no expiration. sessionIdLength is the length of the session ID string.
 
-Returns the session expiration time.
+### Methods: 
 
-```javascript
-const expirationTime = sessionManager.getExpireTime();
-```
+- getAll(): Returns all active sessions.
 
-Sets the session ID length.
-```javascript
-sessionManager.setSessionIdLength(sessionIdLength);
-```
+- destroyAll(): Destroys all active sessions.
 
-Returns the session ID length.
-```javascript
-const idLength = sessionManager.getSessionIdLength();
-```
+- setSessionExpiration(sessionExpiration): Sets the session expiration time.
 
+- getSessionExpiration(): Returns the session expiration time.
 
-Creates a new session ID.
-```javascript
-const newSessionId = sessionManager.createSession();
-```
+- setSessionIdLength(sessionIdLength): Sets the session ID length.
 
-Starts a new session for a user.
-```javascript
-const user = { id: 1, username: 'example' };
-const sessionId = sessionManager.startSession(user);
-```
+- getSessionIdLength(): Returns the session ID length.
 
-Destroys a session.
-```javascript
-const sessionId = 'exampleSessionId';
-const sessionDestroyed = sessionManager.destroySession(sessionId);
-```
+- start(user): Starts a new session for a user.
 
-Updates the expiration time of a session.
-```javascript
-const sessionId = 'exampleSessionId';
-const sessionUpdated = sessionManager.updateSession(sessionId);
-```
+- end(sessionId): Ends a session.
 
-Checks if a session is valid (not expired).
-```javascript
-const sessionId = 'exampleSessionId';
-const user = sessionManager.checkSession(sessionId);
-```
-Returns the user object if the session is valid, otherwise returns false.
+- renew(sessionId): Renews the expiration time of a session.
 
-Binds a user to a session.
-```javascript
-const sessionId = 'exampleSessionId';
-const user = { id: 1, username: 'example' };
-const session = sessionManager.bindUserToSession(sessionId, user);
-```
-Returns the session object.
+- validate(sessionId): Checks if a session is valid (i.e., not expired).
 
-Returns the user of a session.
-```javascript
-const sessionId = 'exampleSessionId';
-const user = sessionManager.getUser(sessionId);
-```
-Returns the user object if the session exists, otherwise returns false.
-
-License
-This project is licensed under the MIT License.
+- getUser(sessionId): Returns the user of a session.
