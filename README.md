@@ -23,7 +23,7 @@ const session = new SessionJs();
 // Start a new session for a user
 let sessionId = session.start({username: 'testuser'});
 
-// Check if a session is valid
+// Check if a session is valid | if the validation is true, the expiry time of a session is renewed
 let user = session.validate(sessionId);
 
 // Renew the expiration time of a session
@@ -57,6 +57,6 @@ The constructor takes two optional parameters: sessionExpiration and sessionIdLe
 
 - renew(sessionId): Renews the expiration time of a session.
 
-- validate(sessionId): Checks if a session is valid (i.e., not expired).
+- validate(sessionId): Checks if a session is valid (i.e., not expired). If the validation is true, the expiry time of a session is renewed
 
 - getUser(sessionId): Returns the user of a session.

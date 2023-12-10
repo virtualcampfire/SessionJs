@@ -146,6 +146,7 @@ export default class SessionJs {
         let session = this.activeSessions.find(session => session.sessionId === sessionId);
         if (session) {
             if (this.sessionExpiration === "never" || session.expireTimestamp > new Date().getTime()) {
+                this.renew(sessionId);
                 return session.user;
             }
         }
