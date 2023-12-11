@@ -102,7 +102,7 @@ export default class SessionJs {
         while (this.activeSessions.includes(sessionId)) {
             sessionId = this.generateId();
         }
-        this.activeSessions.push(this.bindUserToSession(sessionId, user));
+        this.activeSessions.push(this.bindUser(sessionId, user));
         return sessionId;
     }
 
@@ -154,7 +154,7 @@ export default class SessionJs {
     }
 
     /**
-     * @method bindUserToSession
+     * @method bindUser
      * @description Binds a user to a session.
      * @param {string} sessionId - The ID of the session.
      * @param {Object} user - The user to bind to the session.
