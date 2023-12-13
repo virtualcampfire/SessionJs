@@ -60,3 +60,7 @@ The constructor takes two optional parameters: sessionExpiration and sessionIdLe
 - validate(sessionId): Checks if a session is valid (i.e., not expired). If the validation is true, the expiry time of a session is renewed
 
 - getUser(sessionId): Returns the user of a session.
+
+- updateUser(sessionId, user): Updates the user of a session. Returns true if changed
+
+- getSessionId(user): Returns the sessionId of a User

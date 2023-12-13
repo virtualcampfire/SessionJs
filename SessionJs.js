@@ -183,4 +183,34 @@ export default class SessionJs {
         }
         return false;
     }
+
+    /**
+     * @method updateUser
+     * @description Updates the user of a session.
+     * @param {string} sessionId - The ID of the session.
+     * @param {Object} user - The new user.
+     * @returns {boolean} True if the user was updated, false otherwise.
+     */
+    updateUser(sessionId, user) {
+        let session = this.activeSessions.find(session => session.sessionId === sessionId);
+        if (session) {
+            session.user = user;
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * @method getSessionId
+     * @description Returns the session of a user.
+     * @param {Object} user - The user.
+     * @returns {string|boolean} The session ID if the user has an active session, false otherwise.
+     */
+    getSessionId(user){
+        let session = this.activeSessions.find(session => session.user === user);
+        if (session) {
+            return session.sessionId;
+        }
+        return false;
+    }
 }
